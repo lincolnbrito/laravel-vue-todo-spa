@@ -224,4 +224,12 @@ export default {
   .active {
     background-color: lightgreen;
   }
+
+  .fade-enter-active, .face-leave-active {
+    transition: opacity .3s;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
 </style>
