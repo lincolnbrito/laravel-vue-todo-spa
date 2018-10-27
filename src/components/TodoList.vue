@@ -14,7 +14,7 @@
     </transition-group>
 
     <div class="extra-container">
-      <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos()">Check all</label></div>
+      <todo-check-all :anyRemaining="anyRemaining"></todo-check-all>
       <todo-items-remaining :remaining="remaining"></todo-items-remaining>
     </div>
 
@@ -36,17 +36,20 @@
 <script>
 import TodoItem from './TodoItem'
 import TodoItemsRemaining from './TodoItemsRemaining'
+import TodoCheckAll from './TodoCheckAll'
 
 export default {
   name: 'todo-list',
   components: {
     TodoItem,
-    TodoItemsRemaining
+    TodoItemsRemaining,
+    TodoCheckAll
   },
 
   created() {
     eventBus.$on('removeTodo', index => this.removeTodo(index));
     eventBus.$on('finishedEdit', data => this.finishedEdit(data));
+    eventBus.$on('checkAllChanged', checked => this.checkAllTodos(checked));
   },
 
   data () {
