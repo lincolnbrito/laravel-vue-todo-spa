@@ -43,6 +43,11 @@ export default {
       ]
     }
   },
+  computed: {
+    remaining() {
+      return this.todos.filter( todo => !todo.completed).length;
+    }
+  },
   methods: {
     addTodo() {
       if(this.newTodo.trim().length == 0){
