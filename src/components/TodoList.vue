@@ -30,6 +30,10 @@ export default {
   },
   methods: {
     addTodo() {
+      if(this.newTodo.trim().length == 0){
+        return;
+      }
+
       this.todos.push({
         id: this.idForTodo,
         title: this.newTodo,
@@ -54,5 +58,12 @@ export default {
     &:focus{
       outline: 0;
     }
+  }
+
+  .todo-item {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>
