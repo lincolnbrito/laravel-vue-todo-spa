@@ -2,8 +2,9 @@
   <div>
     <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
     <div v-for="(todo,index) in todos" :key="todo.id" class="todo-item">
-      <div>
-        {{ todo.title }}
+      <div class="todo-item-left">
+        <div class="todo-item-label">{{ todo.title }}</div>
+        <input class="todo-item-edit" type="text" v-model="todo.title">
       </div>
       <div class="remove-item" @click="removeTodo(index)">
         &times;
@@ -83,6 +84,30 @@ export default {
     margin-left: 14px;
     &:hover {
       color: black;
+    }
+  }
+
+  .todo-item-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .todo-item-label {
+    padding: 10px;
+    border: 1px solid white;
+    margin-left: 12px;
+  }
+
+  .todo-item-edit {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-left: 12px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    &:focus {
+      outline: none;
     }
   }
 </style>
