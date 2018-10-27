@@ -42,6 +42,32 @@ export default {
   },
 
   methods: {
+    editTodo() {
+      this.beforeEditCache = this.title;
+      this.editing = true;
+    },
+
+    doneEdit() {
+      if(this.title.trim().length == 0){
+        this.title = this.beforeEditCache;
+      }
+      this.editing = false;
+      this.$emit('finishedEdit', {
+        'index': this.index,
+        'todo': {
+          'id': this.id,
+          'title': this.title,
+          'completed': this.completed,
+          'editing': this.editing
+        }
+      })
+    },
+
+    cancelEdit() {
+      this.title = this.beforeEditCache
+      this.editing = false;
+    },
+
     removeTodo(index) {
       this.$emit('removeTodo', index);
     }

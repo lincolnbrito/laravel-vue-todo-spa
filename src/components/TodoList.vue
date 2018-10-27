@@ -10,6 +10,7 @@
         :todo="todo"
         :index="index"
         @removeTodo="removeTodo"
+        @finishedEdit="finishedEdit"
       >
         <!-- <div class="todo-item-left">
           <input type="checkbox" v-model="todo.completed">
@@ -138,6 +139,10 @@ export default {
 
     clearCompleted() {
       this.todos = this.todos.filter(todo => !todo.completed);
+    },
+
+    finishedEdit(data) {
+      this.todos.splice(data.index, 1, data.todo)
     }
 
   },
