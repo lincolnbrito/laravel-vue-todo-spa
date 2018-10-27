@@ -13,7 +13,7 @@
     </div>
 
     <div class="extra-container">
-      <div><label><input type="checkbox">Check all</label></div>
+      <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos()">Check all</label></div>
       <div>{{ remaining }} items left</div>
     </div>
   </div>
@@ -46,8 +46,12 @@ export default {
   computed: {
     remaining() {
       return this.todos.filter( todo => !todo.completed).length;
+    },
+    anyRemaining() {
+      return this.remaining != 0;
     }
   },
+
   methods: {
     addTodo() {
       if(this.newTodo.trim().length == 0){
@@ -83,9 +87,14 @@ export default {
 
     removeTodo(index) {
       this.todos.splice(index, 1);
+    },
+
+    checkAllTodos() {
+      this.todos.forEach( todo => todo.completed = event.target.checked);
     }
 
   },
+
   directives: {
     focus: {
       inserted: function(el) {
