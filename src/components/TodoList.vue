@@ -24,10 +24,9 @@
         <button :class="{ active: filter == 'completed'}" @click="filter='completed'">Completed</button>
       </div>
       <div>
-        <!-- <transition name="fade"> -->
-          <!-- <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button> -->
-        <!-- </transition> -->
-        Clear completed
+        <transition name="fade">
+          <button v-if="showClearCompletedButton" @click="clearCompleted">Clear Completed</button>
+        </transition>
       </div>
     </div>
   </div>
@@ -75,6 +74,9 @@ export default {
       }
 
       return this.todos;
+    },
+    showClearCompletedButton() {
+      return this.todos.filter( todo => todo.completed ).length > 0;
     }
   },
 
@@ -117,6 +119,10 @@ export default {
 
     checkAllTodos() {
       this.todos.forEach( todo => todo.completed = event.target.checked);
+    },
+
+    clearCompleted() {
+      this.todos = this.todos.filter(todo => !todo.completed);
     }
 
   },
