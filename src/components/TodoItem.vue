@@ -62,7 +62,7 @@ export default {
         this.title = this.beforeEditCache;
       }
       this.editing = false;
-      this.$emit('finishedEdit', {
+      eventBus.$emit('finishedEdit', {
         'index': this.index,
         'todo': {
           'id': this.id,
@@ -79,7 +79,7 @@ export default {
     },
 
     removeTodo(index) {
-      this.$emit('removeTodo', index);
+      eventBus.$emit('removeTodo', index);
     }
   },
 
