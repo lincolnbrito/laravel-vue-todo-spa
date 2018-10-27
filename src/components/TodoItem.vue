@@ -10,8 +10,11 @@
       </div>
       <input v-else class="todo-item-edit" type="text" v-model="title" @blur="doneEdit" @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
     </div>
-    <div class="remove-item" @click="removeTodo(index)">
-      &times;
+    <div>
+      <button @click="pluralize">Plural</button>
+      <span class="remove-item" @click="removeTodo(index)">
+        &times;
+      </span>
     </div>
   </div>
 </template>
@@ -33,6 +36,14 @@ export default {
       type: Boolean,
       required: true
     }
+  },
+
+  created() {
+    eventBus.$on('pluralize', this.handlePluralize)
+  },
+
+  beforeDestroy() {
+    eventBus.$off('pluralize', this.handlePluralize)
   },
 
   data(){
@@ -80,6 +91,23 @@ export default {
 
     removeTodo(index) {
       eventBus.$emit('removeTodo', index);
+    },
+
+    pluralize() {
+      eventBus.$emit('pluralize');
+    },
+
+    handlePluralize() {
+      this.title = this.title + 's';
+      eventBus.$emit('finishedEdit', {
+        'index': this.index,
+        'todo': {
+          'id': this.id,
+          'title': this.title,
+          'completed': this.completed,
+          'editing': this.editing
+        }
+      })
     }
   },
 
