@@ -3,7 +3,7 @@
     <label>
       <input type="checkbox"
         :checked="!anyRemaining"
-        @change="allChecked()">Check all
+        @change="allChecked">Check all
     </label>
   </div>
 </template>
@@ -19,8 +19,8 @@
     },
 
     methods: {
-      allChecked() {
-        this.$store.dispatch('checkAll', event.targe.checked)
+      allChecked(event) {
+        this.$store.dispatch('checkAll', event.target.checked)
       }
     }
   }
