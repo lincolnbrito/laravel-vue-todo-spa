@@ -96,24 +96,6 @@ export default {
 
       this.newTodo = '';
       this.idForTodo++;
-    },
-
-    // removeTodo(id) {
-    //   const index = this.$store.state.todos.findIndex( item => item.id == id );
-    //   this.$store.state.todos.splice(index, 1);
-    // },
-
-    checkAllTodos() {
-      this.$store.state.todos.forEach( todo => todo.completed = event.target.checked);
-    },
-
-    clearCompleted() {
-      this.$store.state.todos = this.$store.state.todos.filter(todo => !todo.completed);
-    },
-
-    finishedEdit(data) {
-      const index = this.$store.state.todos.findIndex(item => item.id == data.todo.id );
-      this.$store.state.todos.splice(index, 1, data.todo)
     }
 
   }
