@@ -47,7 +47,7 @@ export default {
   },
 
   created() {
-    eventBus.$on('removeTodo', index => this.removeTodo(index));
+    // eventBus.$on('removeTodo', index => this.removeTodo(index));
     eventBus.$on('finishedEdit', data => this.finishedEdit(data));
     eventBus.$on('checkAllChanged', checked => this.checkAllTodos(checked));
     eventBus.$on('filterChanged', filter => this.$store.state.filter = filter);
@@ -55,7 +55,7 @@ export default {
   },
 
   beforeDestroy() {
-    eventBus.$off('removeTodo', index => this.removeTodo(index));
+    // eventBus.$off('removeTodo', index => this.removeTodo(index));
     eventBus.$off('finishedEdit', data => this.finishedEdit(data));
     eventBus.$off('checkAllChanged', checked => this.checkAllTodos(checked));
     eventBus.$off('filterChanged', filter => this.$store.state.filter = filter);
@@ -115,10 +115,10 @@ export default {
       this.idForTodo++;
     },
 
-    removeTodo(id) {
-      const index = this.$store.state.todos.findIndex( item => item.id == id );
-      this.$store.state.todos.splice(index, 1);
-    },
+    // removeTodo(id) {
+    //   const index = this.$store.state.todos.findIndex( item => item.id == id );
+    //   this.$store.state.todos.splice(index, 1);
+    // },
 
     checkAllTodos() {
       this.$store.state.todos.forEach( todo => todo.completed = event.target.checked);
@@ -129,11 +129,8 @@ export default {
     },
 
     finishedEdit(data) {
-      const index = this.$store.state.todos.findIndex(item => {
-        return item.id == data.todo.id
-      });
+      const index = this.$store.state.todos.findIndex(item => item.id == data.todo.id );
       this.$store.state.todos.splice(index, 1, data.todo)
-
     }
 
   }
