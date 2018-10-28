@@ -22,7 +22,7 @@
       <todo-filtered></todo-filtered>
       <div>
         <transition name="fade">
-          <todo-clear-completed :showClearCompletedButton="showClearCompletedButton"></todo-clear-completed>
+          <todo-clear-completed></todo-clear-completed>
         </transition>
       </div>
     </div>
