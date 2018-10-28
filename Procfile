@@ -1,1 +1,1 @@
-web: npm install http-server -g & http-server dist/
+web: vendor/bin/heroku-php-nginx dist/
