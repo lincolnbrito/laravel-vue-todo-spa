@@ -46,22 +46,6 @@ export default {
     TodoClearCompleted
   },
 
-  created() {
-    // eventBus.$on('removeTodo', index => this.removeTodo(index));
-    // eventBus.$on('finishedEdit', data => this.finishedEdit(data));
-    eventBus.$on('checkAllChanged', checked => this.checkAllTodos(checked));
-    eventBus.$on('filterChanged', filter => this.$store.state.filter = filter);
-    eventBus.$on('clearCompletedTodos', () => this.clearCompleted());
-  },
-
-  beforeDestroy() {
-    // eventBus.$off('removeTodo', index => this.removeTodo(index));
-    // eventBus.$off('finishedEdit', data => this.finishedEdit(data));
-    eventBus.$off('checkAllChanged', checked => this.checkAllTodos(checked));
-    eventBus.$off('filterChanged', filter => this.$store.state.filter = filter);
-    eventBus.$off('clearCompletedTodos', () => this.clearCompleted());
-  },
-
   data () {
     return {
       newTodo: '',
@@ -105,11 +89,10 @@ export default {
         return;
       }
 
-      this.$store.state.todos.push({
+      this.$store.commit('addTodo', {
         id: this.idForTodo,
         title: this.newTodo,
-        completed: false
-      });
+      })
 
       this.newTodo = '';
       this.idForTodo++;
