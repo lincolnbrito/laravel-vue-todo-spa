@@ -115,7 +115,8 @@ export default {
       this.idForTodo++;
     },
 
-    removeTodo(index) {
+    removeTodo(id) {
+      const index = this.$store.state.todos.findIndex( item => item.id == id );
       this.$store.state.todos.splice(index, 1);
     },
 
@@ -128,7 +129,7 @@ export default {
     },
 
     finishedEdit(data) {
-      let index = this.$store.state.todos.findIndex(item => {
+      const index = this.$store.state.todos.findIndex(item => {
         return item.id == data.todo.id
       });
       this.$store.state.todos.splice(index, 1, data.todo)
