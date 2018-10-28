@@ -20,7 +20,7 @@
 
     methods: {
       allChecked() {
-        this.$store.commit('checkAll', event.targe.checked)
+        this.$store.dispatch('checkAll', event.targe.checked)
       }
     }
   }
