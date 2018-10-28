@@ -5,7 +5,7 @@
     <transition-group name="fade"
       enter-active-class="animated fadeInUp"
       leave-active-class="animated fadeOutDown">
-      <todo-item v-for="(todo,index) in todosFiltered"
+      <todo-item v-for="(todo, index) in todosFiltered"
         :key="todo.id"
         :todo="todo"
         :index="index"
@@ -15,7 +15,7 @@
 
     <div class="extra-container">
       <todo-check-all :anyRemaining="anyRemaining"></todo-check-all>
-      <todo-items-remaining :remaining="remaining"></todo-items-remaining>
+      <todo-items-remaining></todo-items-remaining>
     </div>
 
     <div class="extra-container">
@@ -86,13 +86,13 @@ export default {
   },
   computed: {
     remaining() {
-      return this.$store.getters.remaining
+      return this.$store.getters.remaining;
     },
     anyRemaining() {
-      return this.$store.getters.anyRemaining
+      return this.$store.getters.anyRemaining;
     },
     todosFiltered() {
-        return this.$store.getters.todosFiltered;
+      return this.$store.getters.todosFiltered;
     },
     showClearCompletedButton() {
       return this.$store.getters.showClearCompletedButton;
@@ -128,8 +128,12 @@ export default {
     },
 
     finishedEdit(data) {
-      const index = this.store.state.todos.findIndex(item => item.id == data.id);
-      this.$store.state.todos.splice(index, 1, data)
+      let index = this.$store.state.todos.findIndex(item => {
+        console.log(data.index, item)
+        //item.id == data.index
+      });
+      // this.$store.state.todos.splice(index, 1, data)
+      console.log(this.$store.state.todos);
     }
 
   }
