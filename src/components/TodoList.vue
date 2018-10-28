@@ -129,11 +129,10 @@ export default {
 
     finishedEdit(data) {
       let index = this.$store.state.todos.findIndex(item => {
-        console.log(data.index, item)
-        //item.id == data.index
+        return item.id == data.todo.id
       });
-      // this.$store.state.todos.splice(index, 1, data)
-      console.log(this.$store.state.todos);
+      this.$store.state.todos.splice(index, 1, data.todo)
+
     }
 
   }
