@@ -52,6 +52,10 @@ export const store = new Vuex.Store({
         editing: false
       })
     },
+    deleteTodo(state, id) {
+      const index = state.todos.findIndex( item => item.id == id);
+      state.todos.splice(index, 1);
+    },
     checkAll(state, checked) {
       state.todos.forEach( todo => (todo.completed = checked));
     },
