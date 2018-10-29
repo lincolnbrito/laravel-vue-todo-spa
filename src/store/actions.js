@@ -39,9 +39,16 @@ export default {
 
   },
   checkAll(context, checked) {
-    // setTimeout( () => {
+    axios.patch(`/todosCheckAll`, {
+      completed: checked
+    })
+    .then( response => {
       context.commit('checkAll', checked)
-    // }, 2000);
+    })
+    .catch( error => {
+      console.log(error)
+    })
+
   },
   updateFilter(context, filter){
     // setTimeout( () => {
