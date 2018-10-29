@@ -29,9 +29,14 @@ export default {
     })
   },
   deleteTodo(context, id) {
-    setTimeout( () => {
+    axios.delete(`/todos/${id}`)
+    .then( response => {
       context.commit('deleteTodo', id)
-    }, 2000);
+    })
+    .catch( error => {
+      console.log(error)
+    })
+
   },
   checkAll(context, checked) {
     // setTimeout( () => {
