@@ -1,5 +1,6 @@
 import axios from "axios"
-import getters from "./getters"
+
+axios.defaults.baseURL = config.axios.baseURL
 
 export default {
   retrieveTodos(context){
