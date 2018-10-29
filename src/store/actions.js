@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from "axios"
+import getters from "./getters"
 
 export default {
   retrieveTodos(context){
@@ -51,13 +52,24 @@ export default {
 
   },
   updateFilter(context, filter){
-    // setTimeout( () => {
-      context.commit('updateFilter', filter)
-    // }, 2000);
+    context.commit('updateFilter', filter)
   },
   clearCompleted(context) {
-    setTimeout( () => {
+    let completed = context.state.todos
+      .filter( todo => todo.completed )
+      .map( todo => todo.id );
+
+    axios.delete(`/todosDeleteCompleted`, {
+      data: {
+        todos: completed
+      }
+    })
+    .then( response => {
       context.commit('clearCompleted')
-    }, 2000);
+    })
+    .catch( error => {
+      console.log(error)
+    })
+
   },
 }
