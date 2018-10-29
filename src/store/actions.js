@@ -16,14 +16,14 @@ export default {
     }, 2000);
   },
   checkAll(context, checked) {
-    setTimeout( () => {
+    // setTimeout( () => {
       context.commit('checkAll', checked)
-    }, 2000);
+    // }, 2000);
   },
   updateFilter(context, filter){
-    setTimeout( () => {
+    // setTimeout( () => {
       context.commit('updateFilter', filter)
-    }, 2000);
+    // }, 2000);
   },
   clearCompleted(context) {
     setTimeout( () => {
