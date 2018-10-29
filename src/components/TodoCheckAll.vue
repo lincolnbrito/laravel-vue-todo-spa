@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="hasTodo">
     <label>
       <input type="checkbox"
         :checked="!anyRemaining"
@@ -15,6 +15,9 @@
     computed: {
       anyRemaining() {
         return this.$store.getters.anyRemaining;
+      },
+      hasTodo() {
+        return this.$store.state.todos.length > 0
       }
     },
 
