@@ -75,6 +75,7 @@ export default {
       this.$store.dispatch('addTodo', {
         id: this.idForTodo,
         title: this.newTodo,
+        completed: false
       })
 
       this.newTodo = '';

@@ -11,15 +11,22 @@ export default {
     })
   },
   addTodo(context, todo) {
-    setTimeout( () => {
-      context.commit('addTodo', todo)
-    }, 2000);
-
+    axios.post('/todos', todo)
+    .then( response => {
+      context.commit('addTodo', response.data)
+    })
+    .catch( error => {
+      console.log(error)
+    })
   },
   updateTodo(context, todo) {
-    setTimeout( () => {
-      context.commit('updateTodo', todo)
-    }, 2000);
+    axios.patch(`/todos/${todo.id}`, todo)
+    .then( response => {
+      context.commit('updateTodo', response.data)
+    })
+    .catch( error => {
+      console.log(error)
+    })
   },
   deleteTodo(context, id) {
     setTimeout( () => {

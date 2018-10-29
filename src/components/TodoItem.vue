@@ -8,7 +8,14 @@
           :class="{ completed: completed }">
         {{ title }}
       </div>
-      <input v-else class="todo-item-edit" type="text" v-model="title" @blur="doneEdit" @keyup.enter="doneEdit" @keyup.esc="cancelEdit" v-focus>
+
+      <input v-else
+        class="todo-item-edit"
+        type="text"
+        v-model="title"
+        @keyup.enter="doneEdit"
+        @keyup.esc="cancelEdit"
+        v-focus>
     </div>
     <div>
       <button @click="pluralize">Plural</button>
@@ -68,10 +75,11 @@ export default {
       this.editing = true;
     },
 
-    doneEdit() {
+    doneEdit(event) {
       if(this.title.trim().length == 0){
         this.title = this.beforeEditCache;
       }
+
       this.editing = false;
 
       this.$store.dispatch('updateTodo', {
@@ -81,15 +89,6 @@ export default {
         'editing': this.editing
       })
 
-      // eventBus.$emit('finishedEdit', {
-        // 'index': this.index,
-        // 'todo': {
-          // 'id': this.id,
-          // 'title': this.title,
-          // 'completed': this.completed,
-          // 'editing': this.editing
-        // }
-      // })
     },
 
     cancelEdit() {
