@@ -1,4 +1,15 @@
+import axios from "axios";
+
 export default {
+  retrieveTodos(context){
+    axios.get('/todos')
+    .then( response => {
+      context.commit('retrieveTodos', response.data)
+    })
+    .catch( error => {
+      console.log(error)
+    })
+  },
   addTodo(context, todo) {
     setTimeout( () => {
       context.commit('addTodo', todo)

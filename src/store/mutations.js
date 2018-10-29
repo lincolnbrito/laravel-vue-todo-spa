@@ -4,6 +4,9 @@ import config from '../config'
 axios.defaults.baseURL = config.axios.baseURL
 
 export default {
+  retrieveTodos(state, todos) {
+    state.todos = todos
+  },
   addTodo(state, todo) {
     state.todos.push({
       id: todo.id,
@@ -32,13 +35,6 @@ export default {
     state.filter = filter;
   },
   clearCompleted(state) {
-    axios.get('/todos')
-      .then( response => {
-        console.log(response)
-      })
-      .catch( error => {
-        console.log(error)
-      })
     state.todos = state.todos.filter(todo => !todo.completed);
   },
 }
