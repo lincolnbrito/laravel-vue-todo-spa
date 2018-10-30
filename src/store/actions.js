@@ -1,17 +1,34 @@
 import axios from "axios"
 import config from '../config'
+import db from '../firebase'
 
 axios.defaults.baseURL = config.axios.baseURL
 
 export default {
   retrieveTodos(context){
-    axios.get('/todos')
-    .then( response => {
-      context.commit('retrieveTodos', response.data)
-    })
-    .catch( error => {
-      console.log(error)
-    })
+    //firebase
+    db.collection('todos').get()
+      .then(querySnapshot => {
+        let tempTodos = []
+        querySnapshot.forEach(doc => {
+          const data = {
+            id: doc.id,
+            title: doc.data().title,
+            completed: doc.data().completed,
+            timestamp: doc.data().timestamp
+          }
+          tempTodos.push(data)
+        });
+        context.commit('retrieveTodos', tempTodos)
+      })
+    //database
+    // axios.get('/todos')
+    // .then( response => {
+    //   context.commit('retrieveTodos', response.data)
+    // })
+    // .catch( error => {
+    //   console.log(error)
+    // })
   },
   addTodo(context, todo) {
     axios.post('/todos', todo)
