@@ -5,6 +5,31 @@ import db from '../firebase'
 axios.defaults.baseURL = config.axios.baseURL
 
 export default {
+  initRealtimeListeners(context) {
+    db.collection("todos").onSnapshot( snapshot => {
+        snapshot.docChanges().forEach( change => {
+            if (change.type === "added") {
+
+              const source = change.doc.metadata.hasPendingWrites ? "Local" : "Server";
+
+              if(source == "Server") {
+                context.commit('addTodo', {
+                  id: change.doc.id,
+                  title: change.doc.data().title,
+                  completed: change.doc.data().completed
+                })
+              }
+            }
+            if (change.type === "modified") {
+                console.log("Udpdated", change.doc.data());
+            }
+            if (change.type === "removed") {
+                console.log("Deleted", change.doc.data());
+            }
+        });
+    });
+
+  },
   retrieveTodos(context){
     context.state.loading = true;
     //firebase
