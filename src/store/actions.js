@@ -57,13 +57,22 @@ export default {
     // })
   },
   updateTodo(context, todo) {
-    axios.patch(`/todos/${todo.id}`, todo)
-    .then( response => {
-      context.commit('updateTodo', response.data)
+    db.collection('todos').doc(todo.id).set({
+      id: todo.id,
+      title: todo.title,
+      completed: todo.completed,
+      timestamp: new Date()
     })
-    .catch( error => {
-      console.log(error)
+    .then( () => {
+      context.commit('updateTodo', todo)
     })
+    // axios.patch(`/todos/${todo.id}`, todo)
+    // .then( response => {
+    //   context.commit('updateTodo', response.data)
+    // })
+    // .catch( error => {
+    //   console.log(error)
+    // })
   },
   deleteTodo(context, id) {
     db.collection('todos').doc(id).delete()
