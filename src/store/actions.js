@@ -21,7 +21,13 @@ export default {
               }
             }
             if (change.type === "modified") {
-                console.log("Udpdated", change.doc.data());
+              console.log(change.doc)
+              context.commit('updateTodo', {
+                id: change.doc.id,
+                title: change.doc.data().title,
+                completed: change.doc.data().completed,
+                timestamp: change.doc.data().timestamp
+              })
             }
             if (change.type === "removed") {
                 console.log("Deleted", change.doc.data());
