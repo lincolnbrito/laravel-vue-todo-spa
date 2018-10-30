@@ -19,6 +19,11 @@ export default {
           }
           tempTodos.push(data)
         });
+
+        const todosSorted = tempTodos.sort((a,b) => {
+          return a.timestamp.seconds - b.timestamp.seconds
+        })
+
         context.commit('retrieveTodos', tempTodos)
       })
     //database
