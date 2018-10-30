@@ -4,11 +4,11 @@
       <li><a href="/">Home</a></li>
       <li><a href="">About</a></li>
       <li><a href="">Login</a></li>
-      <li><a href="">About</a></li>
+      <li><a href="">Register</a></li>
     </ul>
 
     <div>
-      Conten for each page goes here
+      <router-view></router-view>
     </div>
   </div>
 </template>
