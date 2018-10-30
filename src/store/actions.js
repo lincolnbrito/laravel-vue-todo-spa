@@ -6,6 +6,7 @@ axios.defaults.baseURL = config.axios.baseURL
 
 export default {
   retrieveTodos(context){
+    context.state.loading = true;
     //firebase
     db.collection('todos').get()
       .then(querySnapshot => {
@@ -19,6 +20,8 @@ export default {
           }
           tempTodos.push(data)
         });
+
+        context.state.loading = false;
 
         const todosSorted = tempTodos.sort((a,b) => {
           return a.timestamp.seconds - b.timestamp.seconds
