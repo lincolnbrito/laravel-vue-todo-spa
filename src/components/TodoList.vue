@@ -166,6 +166,7 @@ export default {
     background-color: white;
     appearance: none;
     border: 1px solid #ccc;
+    padding: 4px;
 
     &:hover {
       background-color: lightgreen;
