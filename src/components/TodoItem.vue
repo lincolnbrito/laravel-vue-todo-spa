@@ -70,6 +70,7 @@ export default {
     todo() {
       this.title = this.todo.title
       this.completed = this.todo.completed
+      this.timestamp = this.todo.timestamp
     }
   },
 
@@ -110,12 +111,12 @@ export default {
 
     handlePluralize() {
       this.title = this.title + 's';
-      const index = this.$store.state.todos.findIndex(item => item.id == this.id );
-      this.$store.state.todos.splice(index, 1, {
+      this.$store.dispatch('updateTodo', {
         'id': this.id,
         'title': this.title,
         'completed': this.completed,
-        'editing': this.editing
+        'timestamp': this.timestamp,
+        'editing': this.editing,
       })
     }
   },

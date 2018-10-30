@@ -30,7 +30,7 @@ export default {
               })
             }
             if (change.type === "removed") {
-                console.log("Deleted", change.doc.data());
+              context.commit('deleteTodo', change.doc.id)
             }
         });
     });
