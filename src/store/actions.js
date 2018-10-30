@@ -116,21 +116,30 @@ export default {
     context.commit('updateFilter', filter)
   },
   clearCompleted(context) {
-    let completed = context.state.todos
-      .filter( todo => todo.completed )
-      .map( todo => todo.id );
+    db.collection('todos').where('completed', '==', true).get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          doc.ref.delete()
+            .then(() => {
+              context.commit('clearCompleted')
+            })
+        })
+      })
+    // let completed = context.state.todos
+    //   .filter( todo => todo.completed )
+    //   .map( todo => todo.id );
 
-    axios.delete(`/todosDeleteCompleted`, {
-      data: {
-        todos: completed
-      }
-    })
-    .then( response => {
-      context.commit('clearCompleted')
-    })
-    .catch( error => {
-      console.log(error)
-    })
+    // axios.delete(`/todosDeleteCompleted`, {
+    //   data: {
+    //     todos: completed
+    //   }
+    // })
+    // .then( response => {
+    //   context.commit('clearCompleted')
+    // })
+    // .catch( error => {
+    //   console.log(error)
+    // })
 
   },
 }
