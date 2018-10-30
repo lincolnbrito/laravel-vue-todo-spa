@@ -95,8 +95,8 @@ export default {
       id: todo.id,
       title: todo.title,
       completed: todo.completed,
-      timestamp: new Date()
-    })
+      // timestamp: new Date()
+    }, {merge:true})
     .then( () => {
       context.commit('updateTodo', todo)
     })
