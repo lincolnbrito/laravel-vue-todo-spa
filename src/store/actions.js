@@ -31,13 +31,25 @@ export default {
     // })
   },
   addTodo(context, todo) {
-    axios.post('/todos', todo)
-    .then( response => {
-      context.commit('addTodo', response.data)
+    db.collection('todos').add({
+      title: todo.title,
+      completed: false,
+      timestamp: new Date()
     })
-    .catch( error => {
-      console.log(error)
+    .then( docRef => {
+      context.commit('addTodo', {
+        id: docRef.id,
+        title: todo.title,
+        completed: false
+      })
     })
+    // axios.post('/todos', todo)
+    // .then( response => {
+    //   context.commit('addTodo', response.data)
+    // })
+    // .catch( error => {
+    //   console.log(error)
+    // })
   },
   updateTodo(context, todo) {
     axios.patch(`/todos/${todo.id}`, todo)
