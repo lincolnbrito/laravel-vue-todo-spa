@@ -3,19 +3,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Master from './components/layouts/Master'
-import App from './App'
-import LandingPage from './components/marketing/LandingPage'
-import {store} from './store/store'
+import store from './store/store'
+import routes from './routes'
 
 window.eventBus = new Vue()
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 
-const routes = [
-  { path: '/', component: LandingPage },
-  { path: '/todo', component: App },
-]
+
 
 const router = new VueRouter({
   routes
