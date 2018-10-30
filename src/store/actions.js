@@ -89,15 +89,27 @@ export default {
 
   },
   checkAll(context, checked) {
-    axios.patch(`/todosCheckAll`, {
-      completed: checked
-    })
-    .then( response => {
-      context.commit('checkAll', checked)
-    })
-    .catch( error => {
-      console.log(error)
-    })
+    db.collection('todos').get()
+      .then(querySnapshot => {
+        querySnapshot.forEach( doc => {
+          doc.ref.update({
+            completed: checked
+          })
+          .then(() => {
+            context.commit('checkAll', checked)
+          })
+        })
+
+      })
+    // axios.patch(`/todosCheckAll`, {
+    //   completed: checked
+    // })
+    // .then( response => {
+    //   context.commit('checkAll', checked)
+    // })
+    // .catch( error => {
+    //   console.log(error)
+    // })
 
   },
   updateFilter(context, filter){
