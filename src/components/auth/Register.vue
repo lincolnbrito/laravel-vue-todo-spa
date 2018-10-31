@@ -19,7 +19,7 @@
       </div>
 
       <div class="form-control">
-        <button type="submit" class="btn-submit">Login</button>
+        <button type="submit" class="btn-submit">Register</button>
       </div>
 
     </form>
