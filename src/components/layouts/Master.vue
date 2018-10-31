@@ -117,6 +117,15 @@
     border-radius: 4px;
   }
 
+  .success-message {
+    background-color: #dff8d8;
+    color: #3c763d;
+    margin-bottom: 12px;
+    font-size: 16px;
+    padding: 18px 16px;
+    border-radius: 4px;
+  }
+
   .form-error {
     font-size: 16px;
     color: #a94442;
