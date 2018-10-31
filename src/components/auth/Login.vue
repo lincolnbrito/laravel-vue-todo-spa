@@ -25,7 +25,12 @@
       </div>
 
       <div class="form-control">
-        <button type="submit" class="btn-submit">Login</button>
+        <button type="submit" class="btn-submit" :disabled="loading">
+          <div v-if="loading" class="lds-ring-container">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          </div>
+          Login
+        </button>
       </div>
 
     </form>
@@ -45,19 +50,23 @@
         username: '',
         password: '',
         serverError: '',
-        successMessage: this.dataSuccessMessage
+        successMessage: this.dataSuccessMessage,
+        loading: false
       }
     },
     methods: {
       login() {
+        this.loading = true;
         this.$store.dispatch('retrieveToken', {
           username: this.username,
           password: this.password
         })
         .then(response => {
+          this.loading = false;
           this.$router.push({name: 'todo'})
         })
         .catch( error => {
+          this.loading = false;
           this.serverError = error.response.data;
           this.password = '';
           this.successMessage = '';
