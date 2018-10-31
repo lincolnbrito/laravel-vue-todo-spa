@@ -107,4 +107,13 @@
       background: darken(#60BD4F, 10%);
     }
   }
+
+  .server-error {
+    margin-bottom: 12px;
+    font-size: 16px;
+    padding: 10px 16px;
+    color: #a94442;
+    background: #f3dede;
+    border-radius: 4px;
+  }
 </style>

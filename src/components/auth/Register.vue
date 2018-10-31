@@ -3,6 +3,10 @@
     <h2 class="login-heading">Register</h2>
     <form action="#" @submit.prevent="register">
 
+      <div v-if="serverErrors" class="server-error">
+        <div v-for="(value, key) in serverErrors" :key="key">{{ value[0] }}</div>
+      </div>
+
       <div class="form-control">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" class="login-input" v-model="name">
@@ -32,7 +36,8 @@
       return {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        serverErrors: ''
       }
     },
     methods: {
@@ -44,6 +49,9 @@
         })
         .then(response => {
           this.$router.push({name: 'login'})
+        })
+        .catch( error => {
+          this.serverErrors = Object.values(error.response.data.errors)
         })
       }
     }

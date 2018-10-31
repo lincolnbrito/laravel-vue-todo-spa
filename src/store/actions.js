@@ -49,6 +49,7 @@ export default {
     })
   },
   retrieveToken(context, credentials){
+
     return new Promise( (resolve, reject) => {
       axios.post('/login', {
         username: credentials.username,
@@ -56,6 +57,7 @@ export default {
       })
       .then( response => {
         const token = response.data.access_token
+
         localStorage.setItem('access_token', token)
         context.commit('retrieveToken', token)
 
@@ -63,9 +65,7 @@ export default {
 
       })
       .catch( error => {
-        localStorage.setItem('access_token', token)
-        context.commit('retrieveToken', token)
-
+        console.log(error);
         reject(error)
       })
     })
