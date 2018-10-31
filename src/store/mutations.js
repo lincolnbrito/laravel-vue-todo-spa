@@ -4,6 +4,9 @@ import config from '../config'
 axios.defaults.baseURL = config.axios.baseURL
 
 export default {
+  retrieveToken(state, token){
+    state.token = token
+  },
   retrieveTodos(state, todos) {
     state.todos = todos
   },
