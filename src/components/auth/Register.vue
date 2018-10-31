@@ -9,19 +9,19 @@
 
       <div class="form-control">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" class="login-input" v-model="name" v-validate="'required'">
+        <input type="text" name="name" id="name" class="login-input" :class="{ 'input-error': errors.has('name') }" v-model="name" v-validate="'required'">
         <span class="form-error">{{ errors.first('name')}}</span>
       </div>
 
       <div class="form-control">
         <label for="email">Email</label>
-        <input type="text" name="email" id="email" class="login-input" v-model="email" v-validate="'required|email'">
+        <input type="text" name="email" id="email" class="login-input" :class="{ 'input-error': errors.has('email') }" v-model="email" v-validate="'required|email'">
         <span class="form-error">{{ errors.first('email')}}</span>
       </div>
 
       <div class="form-control mb-more">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="login-input" v-model="password" v-validate="'required|min:6'">
+        <input type="password" name="password" id="password" class="login-input" :class="{ 'input-error': errors.has('password') }" v-model="password" v-validate="'required|min:6'">
         <span class="form-error">{{ errors.first('password')}}</span>
       </div>
 
