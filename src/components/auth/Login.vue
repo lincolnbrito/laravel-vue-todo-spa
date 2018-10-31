@@ -3,8 +3,8 @@
     <h2 class="login-heading">Login</h2>
     <form action="#" @submit.prevent="validateBeforeSubmit">
 
-      <div v-if="dataSuccessMessage" class="success-message">
-        {{ dataSuccessMessage }}
+      <div v-if="successMessage" class="success-message">
+        {{ successMessage }}
       </div>
 
       <div v-if="serverError" class="server-error">
@@ -44,7 +44,8 @@
       return {
         username: '',
         password: '',
-        serverError: ''
+        serverError: '',
+        successMessage: this.dataSuccessMessage
       }
     },
     methods: {
@@ -58,6 +59,8 @@
         })
         .catch( error => {
           this.serverError = error.response.data;
+          this.password = '';
+          this.successMessage = '';
         })
       },
       validateBeforeSubmit() {

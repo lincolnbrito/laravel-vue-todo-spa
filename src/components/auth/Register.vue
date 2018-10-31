@@ -60,6 +60,10 @@
           this.$router.push({name: 'login', params: {
             dataSuccessMessage: this.successMessage
           }})
+          this.$toast.success({
+            title: this.successMessage,
+            message: 'You can'
+          })
         })
         .catch( error => {
           this.serverErrors = Object.values(error.response.data.errors)
