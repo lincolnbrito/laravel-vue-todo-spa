@@ -36,6 +36,18 @@ export default {
   //   });
 
   // },
+  retrieveName(context){
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
+    return new Promise( (resolve, reject) => {
+      axios.get('/user')
+      .then( response => {
+        resolve(response)
+      })
+      .catch( error => {
+        reject(error)
+      })
+    })
+  },
   retrieveToken(context, credentials){
     return new Promise( (resolve, reject) => {
       axios.post('/login', {
@@ -136,6 +148,7 @@ export default {
     context.commit('clearTodos');
   },
   addTodo(context, todo) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
     // // firebase
     // db.collection('todos').add({
     //   title: todo.title,
