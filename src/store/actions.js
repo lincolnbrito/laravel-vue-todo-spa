@@ -80,6 +80,23 @@ export default {
       })
     }
   },
+  register(context, data){
+    return new Promise( (resolve, reject) => {
+      axios.post('/register', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      })
+      .then( response => {
+
+        resolve(response)
+      })
+      .catch( error => {
+        console.log('',error)
+        reject(error)
+      })
+    })
+  },
   retrieveTodos(context){
     context.state.loading = true;
     //firebase
