@@ -1,7 +1,7 @@
 <template>
   <div class="login-form">
     <h2 class="login-heading">Register</h2>
-    <form action="#" @submit.prevent="register">
+    <form action="#" @submit.prevent="validateBeforeSubmit">
 
       <div v-if="serverErrors" class="server-error">
         <div v-for="(value, key) in serverErrors" :key="key">{{ value[0] }}</div>
@@ -55,6 +55,13 @@
         })
         .catch( error => {
           this.serverErrors = Object.values(error.response.data.errors)
+        })
+      },
+      validateBeforeSubmit() {
+        this.$validator.validateAll().then( result => {
+          if(result) {
+            this.register()
+          }
         })
       }
     }

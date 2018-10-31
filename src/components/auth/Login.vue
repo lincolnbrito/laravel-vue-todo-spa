@@ -1,7 +1,7 @@
 <template>
   <div class="login-form">
     <h2 class="login-heading">Login</h2>
-    <form action="#" @submit.prevent="login">
+    <form action="#" @submit.prevent="validateBeforeSubmit">
 
       <div v-if="serverError" class="server-error">
         {{ serverError.message }}
@@ -9,12 +9,15 @@
 
       <div class="form-control">
         <label for="username">Username/Email</label>
-        <input type="text" name="username" id="username" class="login-input" v-model="username" v-validate="'required'">
+        <input type="text" name="username" id="username" class="login-input" :class="{ 'input-error': errors.has('username') }" v-model="username" v-validate="'required|email'">
+         <span class="form-error">{{ errors.first('username')}}</span>
       </div>
+
 
       <div class="form-control mb-more">
         <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="login-input" v-model="password">
+        <input type="password" name="password" id="password" class="login-input" :class="{ 'input-error': errors.has('password') }" v-model="password" v-validate="'required'">
+        <span class="form-error">{{ errors.first('password')}}</span>
       </div>
 
       <div class="form-control">
@@ -46,6 +49,13 @@
         })
         .catch( error => {
           this.serverError = error.response.data;
+        })
+      },
+      validateBeforeSubmit() {
+        this.$validator.validateAll().then( result => {
+          if(result) {
+            this.login()
+          }
         })
       }
     }
