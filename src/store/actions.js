@@ -51,10 +51,34 @@ export default {
 
       })
       .catch( error => {
-        console.log('',error)
+        localStorage.setItem('access_token', token)
+        context.commit('retrieveToken', token)
+
         reject(error)
       })
     })
+  },
+  destroyToken(context){
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${context.state.token}`
+
+    if (context.getters.loggedIn) {
+      return new Promise( (resolve, reject) => {
+        axios.post('/logout')
+        .then( response => {
+
+          localStorage.removeItem('access_token')
+          context.commit('destroyToken')
+
+          resolve(response)
+
+        })
+        .catch( error => {
+          console.log('',error)
+          reject(error)
+        })
+      })
+    }
   },
   retrieveTodos(context){
     context.state.loading = true;
