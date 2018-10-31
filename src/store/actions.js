@@ -37,18 +37,23 @@ export default {
 
   },
   retrieveToken(context, credentials){
-    axios.post('/login', {
-      username: credentials.username,
-      password: credentials.password
-    })
-    .then( response => {
-      const token = response.data.access_token
-      localStorage.setItem('access_token', token)
-      context.commit('retrieveToken', token)
+    return new Promise( (resolve, reject) => {
+      axios.post('/login', {
+        username: credentials.username,
+        password: credentials.password
+      })
+      .then( response => {
+        const token = response.data.access_token
+        localStorage.setItem('access_token', token)
+        context.commit('retrieveToken', token)
 
-    })
-    .catch( error => {
-      console.log('',error)
+        resolve(response)
+
+      })
+      .catch( error => {
+        console.log('',error)
+        reject(error)
+      })
     })
   },
   retrieveTodos(context){
