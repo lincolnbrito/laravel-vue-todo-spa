@@ -116,4 +116,9 @@
     background: #f3dede;
     border-radius: 4px;
   }
+
+  .form-error {
+    font-size: 16px;
+    color: #a94442;
+  }
 </style>

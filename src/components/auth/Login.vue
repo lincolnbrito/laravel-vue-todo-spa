@@ -9,7 +9,7 @@
 
       <div class="form-control">
         <label for="username">Username/Email</label>
-        <input type="email" name="username" id="username" class="login-input" v-model="username">
+        <input type="text" name="username" id="username" class="login-input" v-model="username" v-validate="'required'">
       </div>
 
       <div class="form-control mb-more">
