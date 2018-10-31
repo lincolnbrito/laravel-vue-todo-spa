@@ -18,6 +18,30 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach( (to, from, next) => {
+  if(to.matched.some( record => record.meta.requiresAuth)) {
+    if(!store.getters.loggedIn) {
+      next({
+        name: 'login',
+        // query: { redirect: to.fullPath}
+      })
+    } else {
+      next()
+    }
+  } else if(to.matched.some( record => record.meta.requiresVisitor)) {
+    if(store.getters.loggedIn) {
+      next({
+        name: 'todo',
+        // query: { redirect: to.fullPath}
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
