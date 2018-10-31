@@ -13,6 +13,9 @@ export default {
   retrieveTodos(state, todos) {
     state.todos = todos
   },
+  clearTodos(state) {
+    state.todos = []
+  },
   addTodo(state, todo) {
     state.todos.push({
       id: todo.id,

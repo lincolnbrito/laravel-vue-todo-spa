@@ -132,6 +132,9 @@ export default {
       console.log(error)
     })
   },
+  clearTodos(context) {
+    context.commit('clearTodos');
+  },
   addTodo(context, todo) {
     // // firebase
     // db.collection('todos').add({
