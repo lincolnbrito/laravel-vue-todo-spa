@@ -15,7 +15,11 @@
     </ul>
 
     <div>
-      <router-view></router-view>
+      <transition name="router-animation"
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -32,7 +36,9 @@
 
 <style lang="scss">
 
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
   @import url('cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css');
+
 
   * {
     box-sizing: border-box;
@@ -138,4 +144,7 @@
     border: 1px solid red;
   }
 
+  .page-wrapper {
+    animation-duration: 0.2s;
+  }
 </style>

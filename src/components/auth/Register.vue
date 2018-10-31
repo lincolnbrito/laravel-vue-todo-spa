@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form">
+  <div class="page-wrapper login-form">
     <h2 class="login-heading">Register</h2>
     <form action="#" @submit.prevent="validateBeforeSubmit">
 
