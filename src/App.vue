@@ -14,6 +14,11 @@ export default {
   components: {
     HelloWorld,
     TodoList
+  },
+  // navigation guard and hooks
+  beforeRouteEnter (to, from, next) {
+    console.log(to, from, next)
+    next()
   }
 }
 </script>
