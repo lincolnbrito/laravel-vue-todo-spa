@@ -17,7 +17,11 @@ export default {
   },
   // navigation guard and hooks
   beforeRouteEnter (to, from, next) {
-    console.log(to, from, next)
+    console.log('Entering route:', to, from)
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('Leaving route:',to.name, from.name)
     next()
   }
 }

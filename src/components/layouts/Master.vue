@@ -15,6 +15,7 @@
     </ul>
 
     <div>
+      <input type="text" v-model="saida">{{saida}}
       <transition name="router-animation"
         enter-active-class="animated fadeIn"
         leave-active-class="animated fadeOut" mode="out-in">
@@ -26,6 +27,19 @@
 
 <script>
   export default {
+    mounted() {
+    //  window.onbeforeunload = () => "EITAAAA"
+    //  window.onblur = () => "Dude, are you sure you want to leave? Think of the kittens!";
+      window.onbeforeunload = () => this.saida=='ok' ? '' : null
+      document.onmouseleave = (e) => console.log(e.clientY)
+      document.onmouseenter = () => this.saida = 'VOltou???'
+      //window.onmouseout = this.leaving;
+    },
+    data(){
+      return {
+        saida: ''
+      }
+    },
     computed: {
       loggedIn() {
         return this.$store.getters.loggedIn
