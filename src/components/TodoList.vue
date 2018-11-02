@@ -4,7 +4,7 @@
       Welcome, {{ name }}
     </div>
     <input type="text" class="todo-input" placeholder="What needs to be done" v-model="newTodo" @keyup.enter="addTodo">
-    <div v-if="$store.state.loading" class="lds-ring">
+    <div v-if="$store.state.loading" class="lds-ring grey">
       <div></div><div></div><div></div><div></div>
     </div>
     <transition-group name="fade"
