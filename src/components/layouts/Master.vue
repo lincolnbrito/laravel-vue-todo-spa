@@ -28,10 +28,9 @@
 <script>
   export default {
     mounted() {
-    //  window.onbeforeunload = () => "EITAAAA"
     //  window.onblur = () => "Dude, are you sure you want to leave? Think of the kittens!";
       window.onbeforeunload = () => this.saida=='ok' ? '' : null
-      document.onmouseleave = (e) => console.log(e.clientY)
+      document.onmouseleave = (e) => { console.log(e.clientY); this.saida = '' }
       document.onmouseenter = () => this.saida = 'VOltou???'
       //window.onmouseout = this.leaving;
     },

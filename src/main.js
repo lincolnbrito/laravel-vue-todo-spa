@@ -22,8 +22,6 @@ Vue.use(VueRouter)
 Vue.use(VeeValidae)
 Vue.use(CxltToastr, toastrConfig)
 
-
-
 const router = new VueRouter({
   mode: "history",
   routes
